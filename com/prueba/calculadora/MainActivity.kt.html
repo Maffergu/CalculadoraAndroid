@@ -1,0 +1,88 @@
+<html>
+<head>
+<title>MainActivity.kt</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+MainActivity.kt</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com.prueba.calculadora</span>
+
+<span class="s1">import androidx.appcompat.app.AppCompatActivity</span>
+<span class="s1">import android.os.Bundle</span>
+<span class="s1">import kotlinx.android.synthetic.main.activity_main.*</span>
+<span class="s1">import net.objecthunter.exp4j.ExpressionBuilder</span>
+<span class="s1">import java.lang.Exception</span>
+
+
+<span class="s0">class </span><span class="s1">MainActivity : AppCompatActivity() {</span>
+    <span class="s1">override </span><span class="s0">fun </span><span class="s1">onCreate(savedInstanceState: Bundle?) {</span>
+        <span class="s0">super</span><span class="s1">.onCreate(savedInstanceState)</span>
+        <span class="s1">setContentView(R.layout.activity_main)</span>
+
+        <span class="s1">tvOne.setOnClickListener{AppendOnExpression(string=</span><span class="s2">&quot;1&quot;</span><span class="s0">, </span><span class="s1">canClear = </span><span class="s0">true</span><span class="s1">)}</span>
+        <span class="s1">tvTwo.setOnClickListener{AppendOnExpression(string=</span><span class="s2">&quot;2&quot;</span><span class="s0">, </span><span class="s1">canClear = </span><span class="s0">true</span><span class="s1">)}</span>
+        <span class="s1">tvThree.setOnClickListener{AppendOnExpression(string=</span><span class="s2">&quot;3&quot;</span><span class="s0">, </span><span class="s1">canClear = </span><span class="s0">true</span><span class="s1">)}</span>
+        <span class="s1">tvFour.setOnClickListener{AppendOnExpression(string=</span><span class="s2">&quot;4&quot;</span><span class="s0">, </span><span class="s1">canClear = </span><span class="s0">true</span><span class="s1">)}</span>
+        <span class="s1">tvFive.setOnClickListener{AppendOnExpression(string=</span><span class="s2">&quot;5&quot;</span><span class="s0">, </span><span class="s1">canClear = </span><span class="s0">true</span><span class="s1">)}</span>
+        <span class="s1">tvSix.setOnClickListener{AppendOnExpression(string=</span><span class="s2">&quot;6&quot;</span><span class="s0">, </span><span class="s1">canClear = </span><span class="s0">true</span><span class="s1">)}</span>
+        <span class="s1">tvSeven.setOnClickListener{AppendOnExpression(string=</span><span class="s2">&quot;7&quot;</span><span class="s0">, </span><span class="s1">canClear = </span><span class="s0">true</span><span class="s1">)}</span>
+        <span class="s1">tvEight.setOnClickListener{AppendOnExpression(string=</span><span class="s2">&quot;8&quot;</span><span class="s0">, </span><span class="s1">canClear = </span><span class="s0">true</span><span class="s1">)}</span>
+        <span class="s1">tvNine.setOnClickListener{AppendOnExpression(string=</span><span class="s2">&quot;9&quot;</span><span class="s0">, </span><span class="s1">canClear = </span><span class="s0">true</span><span class="s1">)}</span>
+        <span class="s1">tvZero.setOnClickListener{AppendOnExpression(string=</span><span class="s2">&quot;0&quot;</span><span class="s0">, </span><span class="s1">canClear = </span><span class="s0">true</span><span class="s1">)}</span>
+
+        <span class="s1">tvPlus.setOnClickListener{AppendOnExpression(string=</span><span class="s2">&quot;+&quot;</span><span class="s0">, </span><span class="s1">canClear = </span><span class="s0">true</span><span class="s1">)}</span>
+        <span class="s1">tvMinos.setOnClickListener{AppendOnExpression(string=</span><span class="s2">&quot;-&quot;</span><span class="s0">, </span><span class="s1">canClear = </span><span class="s0">true</span><span class="s1">)}</span>
+        <span class="s1">tvMul.setOnClickListener{AppendOnExpression(string=</span><span class="s2">&quot;*&quot;</span><span class="s0">, </span><span class="s1">canClear = </span><span class="s0">true</span><span class="s1">)}</span>
+        <span class="s1">tvDivide.setOnClickListener{AppendOnExpression(string=</span><span class="s2">&quot;/&quot;</span><span class="s0">, </span><span class="s1">canClear = </span><span class="s0">true</span><span class="s1">)}</span>
+        <span class="s1">tvOpen.setOnClickListener{AppendOnExpression(string=</span><span class="s2">&quot;(&quot;</span><span class="s0">, </span><span class="s1">canClear = </span><span class="s0">true</span><span class="s1">)}</span>
+        <span class="s1">tvClose.setOnClickListener{AppendOnExpression(string=</span><span class="s2">&quot;)&quot;</span><span class="s0">, </span><span class="s1">canClear = </span><span class="s0">true</span><span class="s1">)}</span>
+        <span class="s1">tvDot.setOnClickListener{AppendOnExpression(string=</span><span class="s2">&quot;.&quot;</span><span class="s0">, </span><span class="s1">canClear = </span><span class="s0">true</span><span class="s1">)}</span>
+
+
+        <span class="s1">tvClear.setOnClickListener{</span>
+            <span class="s1">tvExpression.text = </span><span class="s2">&quot;&quot;</span>
+            <span class="s1">tvResult.text = </span><span class="s2">&quot;&quot;</span>
+        <span class="s1">}</span>
+        <span class="s1">tvBack.setOnClickListener{</span>
+            <span class="s0">val </span><span class="s1">string = tvExpression.text.toString()</span>
+            <span class="s0">if</span><span class="s1">(string.isNotEmpty()){</span>
+                <span class="s1">tvExpression.text = string.substring(</span><span class="s3">0</span><span class="s0">,</span><span class="s1">string.length-</span><span class="s3">1</span><span class="s1">)</span>
+
+            <span class="s1">}</span>
+            <span class="s1">tvResult.text = </span><span class="s2">&quot;&quot;</span>
+        <span class="s1">}</span>
+        <span class="s1">tvEquals.setOnClickListener{</span>
+            <span class="s0">val </span><span class="s1">expression = ExpressionBuilder(tvExpression.text.toString()).build()</span>
+            <span class="s0">val </span><span class="s1">result = expression.evaluate()</span>
+            <span class="s0">val </span><span class="s1">longResult = result.toLong()</span>
+            <span class="s0">if</span><span class="s1">(result == longResult.toDouble()){</span>
+                <span class="s1">tvResult.text= longResult.toString()</span>
+            <span class="s1">}</span><span class="s0">else</span><span class="s1">{</span>
+                <span class="s1">tvResult.text = result.toString()</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span>
+
+    <span class="s1">}</span>
+    <span class="s0">fun </span><span class="s1">AppendOnExpression(string:String</span><span class="s0">, </span><span class="s1">canClear : Boolean){</span>
+        <span class="s0">if</span><span class="s1">(canClear){</span>
+            <span class="s1">tvResult.text = </span><span class="s2">&quot;&quot;</span>
+            <span class="s1">tvExpression.append(string)</span>
+        <span class="s1">}</span><span class="s0">else</span><span class="s1">{</span>
+            <span class="s1">tvExpression.append(tvResult.text)</span>
+            <span class="s1">tvExpression.append(string)</span>
+            <span class="s1">tvResult.text = </span><span class="s2">&quot;&quot;</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+<span class="s1">}</span></pre>
+</body>
+</html>
